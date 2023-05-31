@@ -4,79 +4,78 @@ import OSLog
 import XCTestDynamicOverlay
 
 extension UserDefaultsClient: DependencyKey {
-    private static let logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier!,
-        category: String(describing: Self.self)
-    )
-
     public static let liveValue: Self = {
+        let logger = Logger(
+            subsystem: "\(Self.self)",
+            category: "\(Self.self)"
+        )
         return Self(
             arrayForKey: { defaults, key in
                 let array = defaults.array(forKey: key)
-                Self.logger.debug("Getting array for key '\(key)': \(String(describing: array), privacy: .auto)")
+                logger.debug("Getting array for key '\(key)': \(String(describing: array), privacy: .auto)")
                 return array
             },
             boolForKey: { defaults, key in
                 let bool = defaults.bool(forKey: key)
-                Self.logger.debug("Getting bool for key '\(key)': \(String(describing: bool), privacy: .auto)")
+                logger.debug("Getting bool for key '\(key)': \(String(describing: bool), privacy: .auto)")
                 return bool
             },
             dataForKey: { defaults, key in
                 let data = defaults.data(forKey: key)
-                Self.logger.debug("Getting data for key '\(key)': \(String(describing: data), privacy: .auto)")
+                logger.debug("Getting data for key '\(key)': \(String(describing: data), privacy: .auto)")
                 return data
             },
             doubleForKey: { defaults, key in
                 let double = defaults.double(forKey: key)
-                Self.logger.debug("Getting double for key '\(key)': \(String(describing: double), privacy: .auto)")
+                logger.debug("Getting double for key '\(key)': \(String(describing: double), privacy: .auto)")
                 return double
 
             },
             integerForKey: { defaults, key in
                 let integer = defaults.integer(forKey: key)
-                Self.logger.debug("Getting integer for key '\(key)': \(String(describing: integer), privacy: .auto)")
+                logger.debug("Getting integer for key '\(key)': \(String(describing: integer), privacy: .auto)")
                 return integer
             },
             objectForKey: { defaults, key in
                 let object = defaults.object(forKey: key)
-                Self.logger.debug("Getting object for key '\(key)': \(String(describing: object), privacy: .auto)")
+                logger.debug("Getting object for key '\(key)': \(String(describing: object), privacy: .auto)")
                 return object
             },
             register: { defaults, info in
-                Self.logger.debug("Registering defaults: \(String(describing: info), privacy: .auto)")
+                logger.debug("Registering defaults: \(String(describing: info), privacy: .auto)")
                 defaults.register(defaults: info)
             },
             remove: { defaults, key in
-                Self.logger.debug("Removing item for key '\(key)'")
+                logger.debug("Removing item for key '\(key)'")
                 defaults.removeObject(forKey: key)
             },
             setBool: { defaults, value, key in
-                Self.logger.debug("Setting bool '\(String(describing: value), privacy: .auto))' for key '\(key)'")
+                logger.debug("Setting bool '\(String(describing: value), privacy: .auto))' for key '\(key)'")
                 defaults.set(value, forKey: key)
             },
             setData: { defaults, value, key in
-                Self.logger.debug("Setting data '\(String(describing: value), privacy: .auto))' for key '\(key)'")
+                logger.debug("Setting data '\(String(describing: value), privacy: .auto))' for key '\(key)'")
                 defaults.set(value, forKey: key)
             },
             setDouble: { defaults, value, key in
-                Self.logger.debug("Setting double '\(String(describing: value), privacy: .auto))' for key '\(key)'")
+                logger.debug("Setting double '\(String(describing: value), privacy: .auto))' for key '\(key)'")
                 defaults.set(value, forKey: key)
             },
             setInteger: { defaults, value, key in
-                Self.logger.debug("Setting integer '\(String(describing: value), privacy: .auto))' for key '\(key)'")
+                logger.debug("Setting integer '\(String(describing: value), privacy: .auto))' for key '\(key)'")
                 defaults.set(value, forKey: key)
             },
             setObject: { defaults, value, key in
-                Self.logger.debug("Setting object '\(String(describing: value), privacy: .auto))' for key '\(key)'")
+                logger.debug("Setting object '\(String(describing: value), privacy: .auto))' for key '\(key)'")
                 defaults.set(value, forKey: key)
             },
             setString: { defaults, value, key in
-                Self.logger.debug("Setting string '\(String(describing: value), privacy: .auto))' for key '\(key)'")
+                logger.debug("Setting string '\(String(describing: value), privacy: .auto))' for key '\(key)'")
                 defaults.set(value, forKey: key)
             },
             stringForKey: { defaults, key in
                 let string = defaults.string(forKey: key)
-                Self.logger.debug("Getting string for key '\(key)': \(String(describing: string), privacy: .auto)")
+                logger.debug("Getting string for key '\(key)': \(String(describing: string), privacy: .auto)")
                 return string
             }
         )
